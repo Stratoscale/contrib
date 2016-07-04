@@ -9,11 +9,11 @@
     group="{{ansible_env.USER}}"
   tags: install-docker
 
-- name: Install docker package
+- name: Install docker-engine package
   become: yes
   command: "{{ansible_pkg_mgr}} install -y {{item}} --allowerasing"
   with_items:
-    - docker
+    - docker-engine
   tags: install-docker
 
 - name: Create docker group
