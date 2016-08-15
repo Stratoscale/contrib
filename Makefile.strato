@@ -1,12 +1,12 @@
 all: build
 
 build:
-	docker build -t rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse --short HEAD) --rm .
+	docker build -t rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse HEAD) --rm .
 
 push: build
 	@if ! git diff --exit-code --quiet; then echo "Please commit any local changes prior to pushing the image"; false; fi
 	@if ! git diff --exit-code --cached --quiet; then echo "Please commit any local staged changes prior to pushing the image"; false; fi
-	docker push rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse --short HEAD)
+	docker push rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse HEAD)
 
 submit: push
 	# This target is called by jenkins-slave
@@ -14,6 +14,5 @@ submit: push
 approve:
 	# This target is called by jenkins-slave
 
-
 clean:
-	docker rmi rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse --short HEAD)
+	docker rmi rackattack-nas.dc1:5000/stratoscale/kubernetes-contrib:$(shell git rev-parse HEAD)
