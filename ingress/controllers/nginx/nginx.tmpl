@@ -272,8 +272,8 @@ http {
             proxy_set_header                        Accept-Encoding     "";
             {{- end }}
 
-            {{- buildProxyPass $location }}
             set $proxy_upstream_name "{{ $location.Upstream.Name }}";
+            {{- buildProxyPass $location }}
         }
         {{ end }}
 
@@ -341,7 +341,7 @@ http {
             return 503;
             {{ end }}
         }
-    }    
+    }
 }
 
 stream {
