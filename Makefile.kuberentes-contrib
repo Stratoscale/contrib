@@ -1,0 +1,16 @@
+all: build
+
+build:
+	skipper build kubernetes-contrib
+
+push: build
+	skipper push kubernetes-contrib
+
+submit: push
+	# This target is called by jenkins-slave
+
+approve:
+	# This target is called by jenkins-slave
+
+clean:
+	docker rmi kubernetes-contrib:$(shell git rev-parse HEAD)

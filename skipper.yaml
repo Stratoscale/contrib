@@ -1,0 +1,5 @@
+registry: rackattack-nas.dc1:5000
+build-container-image: rackattack-nas.dc1:5000/dev-base:2f876de89e68858250e00d45985cc23332ac759f
+
+make:
+    makefile: Makefile.kuberentes-contrib
