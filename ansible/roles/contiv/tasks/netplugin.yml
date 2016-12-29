@@ -1,9 +1,3 @@
-- include: netplugin_firewalld.yml
-  when: has_firewalld
-
-- include: netplugin_iptables.yml
-  when: not has_firewalld and has_iptables
-
 - include: ovs.yml
   when: netplugin_driver == "ovs"
 

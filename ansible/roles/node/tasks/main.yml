@@ -87,9 +87,3 @@
 - name: Enable delay-node-services
   service: name=delay-node-services.target enabled=yes
   when: not ansible_distribution == 'Ubuntu' and not ansible_distribution_major_version|int < 15
-
-- include: firewalld.yml
-  when: has_firewalld
-
-- include: iptables.yml
-  when: not has_firewalld and has_iptables

@@ -15,23 +15,6 @@
     path: "{{ install_dir }}/lib/modules/{{ ansible_kernel }}/kernel/drivers/net"
     state: directory
 
-- name: Install utilities
-  command: install -m 755 "production/vrouter/utils/{{ item }}" "{{ install_dir }}/usr/bin"
-  args:
-    chdir: "{{ build_dir }}"
-    creates: "{{ install_dir }}/usr/bin/{{ item }}"
-  with_items:
-    - dropstats
-    - flow
-    - mirror
-    - mpls
-    - nh
-    - rt
-    - vif
-    - vrfstats
-    - vrouter
-    - vxlan
-
 - name: Install kmod
   command: install kbuild/vrouter.ko "{{ install_dir }}/lib/modules/{{ ansible_kernel }}/kernel/drivers/net"
   args:

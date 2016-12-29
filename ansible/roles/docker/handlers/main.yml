@@ -16,14 +16,6 @@
     - docker fix start on btrfs
     - docker start service
 
-- name: stop docker
-  service: name=docker state=stopped
-  when: '"docker0" in ansible_interfaces'
-
-- name: delete docker0
-  command: ip link delete docker0
-  when: '"docker0" in ansible_interfaces'
-
   # TODO: work only on default installation...
 - name: docker graph driver 
   command: findmnt -no FSTYPE -T /var/lib/docker

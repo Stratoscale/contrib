@@ -1,9 +1,3 @@
-- include: netmaster_firewalld.yml
-  when: has_firewalld
-
-- include: netmaster_iptables.yml
-  when: not has_firewalld and has_iptables
-
 - name: Netmaster | Check is /etc/hosts file exists
   stat: path=/etc/hosts
   register: hosts
