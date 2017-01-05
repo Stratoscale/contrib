@@ -202,7 +202,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.groups = $groups
     ansible.limit = "all" #otherwise the metadata wont be there for ipv4?
     ansible.tags = $ansible_tags unless $ansible_tags.nil?
-    ansible.raw_ssh_args = ['-o ControlMaster=no']
+    ansible.raw_ssh_args = ['-o ControlMaster=auto -o ControlPersist=600s']
   end
 
   def vagrant_ansible_provision(ansible, provider)
