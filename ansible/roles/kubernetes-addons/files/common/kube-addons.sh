@@ -19,7 +19,7 @@
 # managed result is of that. Start everything below that directory.
 KUBECTL=${KUBECTL_BIN:-/usr/local/bin/kubectl}
 
-ADDON_CHECK_INTERVAL_SEC=${TEST_ADDON_CHECK_INTERVAL_SEC:-600}
+ADDON_CHECK_INTERVAL_SEC=${TEST_ADDON_CHECK_INTERVAL_SEC:-60}
 
 SYSTEM_NAMESPACE=kube-system
 token_dir=${TOKEN_DIR:-/srv/kubernetes}
