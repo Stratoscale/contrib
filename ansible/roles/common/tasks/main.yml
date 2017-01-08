@@ -46,9 +46,6 @@
 - include: rpm.yml
   when: has_rpm
 
-- include: fedora-install.yml
-  when: not is_atomic and ansible_distribution == "Fedora"
-
 # enable cpu and memory accounting for systemd services by default
 - name: Create systemd dropin directory
   file: path=/etc/systemd/system/system.conf.d state=directory mode=0755
