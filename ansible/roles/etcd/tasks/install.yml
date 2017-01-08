@@ -8,12 +8,3 @@
   set_fact:
     etcd_modified: true
   when: etcd_source_type == "package-manager" 
-
-- name: Force etcd_source_type to github when packages are not available
-  set_fact:
-    etcd_source_type: "github-release"
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install etcd from github
-  include: etcd-install-github-release.yml
-  when: etcd_source_type == "github-release"

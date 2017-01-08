@@ -13,7 +13,6 @@
   command: /bin/true
   notify:
     - docker graph driver
-    - docker fix start on btrfs
     - docker start service
 
 - name: stop docker
@@ -30,14 +29,6 @@
   register: docker_driver
   ignore_errors: True
   changed_when: false
-
-  # TODO: fail if no --selinux-enabled in 'OPTIONS'
-- name: docker fix start on btrfs
-  replace:
-    dest="{{ docker_config_dir }}/docker"
-    regexp="^(OPTIONS=.*)(--selinux-enabled(?!=false)([^\s\"\']*))"
-    replace="\1--selinux-enabled=false"
-  when: docker_driver.stdout == 'btrfs'
 
 - name: docker start service
   service: name=docker state=started

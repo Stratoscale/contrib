@@ -2,9 +2,6 @@
 - name: Assures addons dir exists
   file: path={{ kube_addons_dir }} state=directory
 
-- include: generic-install.yml
-  when: not is_atomic and not is_coreos
-
 - name: Assures local addon dir exists
   local_action: file
     path={{ local_temp_addon_dir }}
@@ -44,18 +41,6 @@
     dest={{ kube_script_dir }}/kube-addon-update.sh mode=0755
   notify:
     - restart kube-addons
-
-
-- name: Get Python image Dockerfile
-  copy:
-    src=common/python-image/
-    dest={{ kube_script_dir }}/python-image
-  when: is_coreos
-  register: kube_addons_python_image_dockerfile
-
-- name: Build Python image to use in Kubernetes Addons
-  shell: "docker build -t python:2.7-slim-pyyaml {{ kube_script_dir }}/python-image"
-  when: is_coreos and kube_addons_python_image_dockerfile | changed
 
 - name: Run kube-gen-token script to create {{ kube_token_dir }}/known_tokens.csv
   command: "{{ kube_script_dir }}/kube-gen-token.sh {{ item }}"

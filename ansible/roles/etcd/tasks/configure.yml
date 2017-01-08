@@ -4,12 +4,3 @@
 
 - include: etcd-configure.yml
   when: not is_coreos
-
-- include: etcd2-configure.yml
-  when: is_coreos
-
-- include: firewalld-configure.yml
-  when: has_firewalld
-
-- include: iptables-configure.yml
-  when: not has_firewalld and has_iptables
