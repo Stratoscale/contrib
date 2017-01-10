@@ -9,25 +9,10 @@
 # systemd service configuration uses EnvironmentFile (docker and docker-network)
 # upstart service configuration sources docker_config_dir / docker
 #
-- set_fact:
-    docker_use_upstart: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int < 15
-
 - name: Local vars for systemd installs
   set_fact:
     docker_config_net: "{{ docker_config_dir }}/docker-network"
     docker_env_export: ""
-
-- name: Local vars for upstart installs
-  set_fact:
-    docker_config_net: "{{ docker_config_dir }}/docker"
-    docker_env_export: "export "
-  when: docker_use_upstart
-
-- name: Turn down docker logging
-  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn"
-  notify:
-    - restart docker
-  when: docker_use_upstart
 
 - name: Install http_proxy into docker(-network)
   lineinfile: dest={{ docker_config_net }} regexp="^{{ docker_env_export }}http_proxy=" line="{{docker_env_export}}http_proxy={{ http_proxy }}"
