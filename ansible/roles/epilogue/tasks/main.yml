@@ -1,10 +1,41 @@
-- name: Install kubernetes runtime dependencies
-  action: "{{ ansible_pkg_mgr }}"
-  args:
-        name: "{{ item }}"
-        state: latest
-  with_items:
-  - socat
-  - tar
-  - git
-  when: source_type == "localBuild" and (ansible_distribution == "Fedora" or ansible_distribution == "RedHat" or ansible_distribution == "CentOS")
+- name: Load dash from archive
+  docker_image:
+    name: kubernetes-dashboard-amd64
+    load_path: /tmp/dash.tar.gz
+    pull: no
+    state: present
+
+- name: Load pos from archive
+  docker_image:
+    name: pause
+    load_path: /tmp/pause.tar.gz
+    pull: no
+    state: present
+
+- name: Load skydns from archive
+  docker_image:
+    name: skydns
+    load_path: /tmp/skydns.tar.gz
+    pull: no
+    state: present
+
+- name: Load kube2sky from archive
+  docker_image:
+    name: kube2sky
+    load_path: /tmp/kube2sky.tar.gz
+    pull: no
+    state: present
+
+- name: Load exechealth from archive
+  docker_image:
+    name: exechealth
+    load_path: /tmp/exechealth.tar.gz
+    pull: no
+    state: present
+
+- name: Load etcd from archive
+  docker_image:
+    name: etcd
+    load_path: /tmp/etcd.tar.gz
+    pull: no
+    state: present

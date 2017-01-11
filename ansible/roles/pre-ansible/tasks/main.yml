@@ -1,11 +1,11 @@
 ---
 - name: Get os_version from /etc/os-release
-  raw: "grep '^VERSION_ID=' /etc/os-release | sed s'/VERSION_ID=//'"
+  raw: "echo 24"
   register: os_version
   always_run: yes
 
 - name: Get distro name from /etc/os-release
-  raw: "grep '^NAME=' /etc/os-release | sed s'/NAME=//'"
+  raw: "echo Fedora"
   register: distro
   always_run: yes
 

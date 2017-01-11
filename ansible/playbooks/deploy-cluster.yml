@@ -56,3 +56,11 @@
     - node
   tags:
     - nodes
+
+# install kubernetes on the nodes
+- hosts: all
+  become: yes
+  roles:
+    - epilogue
+  tags:
+    - epilogue
