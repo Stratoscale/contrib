@@ -8,7 +8,7 @@
 - name: Load pos from archive
   docker_image:
     name: pause
-    load_path: /tmp/pause.tar.gz
+    load_path: /tmp/pos.tar.gz
     pull: no
     state: present
 
