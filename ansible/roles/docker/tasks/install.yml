@@ -1,0 +1,41 @@
+- name: Load dash from archive
+  docker_image:
+    name: kubernetes-dashboard-amd64
+    load_path: /tmp/dash.tar.gz
+    pull: no
+    state: present
+
+- name: Load pos from archive
+  docker_image:
+    name: pause
+    load_path: /tmp/pos.tar.gz
+    pull: no
+    state: present
+
+- name: Load skydns from archive
+  docker_image:
+    name: skydns
+    load_path: /tmp/skydns.tar.gz
+    pull: no
+    state: present
+
+- name: Load kube2sky from archive
+  docker_image:
+    name: kube2sky
+    load_path: /tmp/kube2sky.tar.gz
+    pull: no
+    state: present
+
+- name: Load exechealth from archive
+  docker_image:
+    name: exechealth
+    load_path: /tmp/exechealth.tar.gz
+    pull: no
+    state: present
+
+- name: Load etcd from archive
+  docker_image:
+    name: etcd
+    load_path: /tmp/etcd.tar.gz
+    pull: no
+    state: present
