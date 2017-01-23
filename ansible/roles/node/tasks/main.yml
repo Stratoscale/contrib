@@ -8,25 +8,8 @@
   tags:
     - binary-update
 
-- include: localBuildInstall.yml
-  when: source_type == "localBuild"
-  tags:
-    - binary-update
-
 - name: Make sure manifest directory exists
   file: path={{ kube_manifest_dir }} state=directory
-
-- name: Install fluentd pod into each node
-  get_url:
-    url=https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/cluster/saltbase/salt/fluentd-es/fluentd-es.yaml
-    dest="{{ kube_manifest_dir }}"
-    force=yes
-    validate_certs=False
-  environment:
-    http_proxy: "{{ http_proxy|default('') }}"
-    https_proxy: "{{ https_proxy|default('') }}"
-    no_proxy: "{{ no_proxy|default('') }}"
-  when: cluster_logging
 
 - name: Get the node token values
   slurp:
@@ -56,7 +39,7 @@
     - restart kubelet
 
 - name: Enable kubelet
-  service: name=kubelet enabled=yes state=started 
+  service: name=kubelet enabled=yes state=started
   notify:
     - restart kubelet
 
@@ -81,9 +64,3 @@
 - name: Enable delay-node-services
   service: name=delay-node-services.target enabled=yes
   when: not ansible_distribution == 'Ubuntu' and not ansible_distribution_major_version|int < 15
-
-- include: firewalld.yml
-  when: has_firewalld
-
-- include: iptables.yml
-  when: not has_firewalld and has_iptables

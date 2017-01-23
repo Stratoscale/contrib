@@ -1,9 +1,4 @@
 ---
-- name: Create docker group
-  become: yes
-  group: name=docker state=present
-  tags: install-docker
-
 - name: Add {{ansible_env.USER}} to docker group
   become: yes
   user: >

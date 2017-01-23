@@ -16,17 +16,8 @@
 - include: dns.yml
   when: dns_setup
 
-- include: cluster-monitoring.yml
-  when: cluster_monitoring
-
-- include: cluster-logging.yml
-  when: cluster_logging
-
 - include: kube-ui.yml
   when: kube-ui
-
-- include: kube-dash.yml
-  when: kube-dash
 
 - name: Get kube-addons script from Kubernetes
   copy:
@@ -61,10 +52,6 @@
   notify:
     - reload and restart kube-addons
   when: not (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 15)
-
-- name: Install kube-addons upstart configuration
-  template: src=kube-addons.upstart.j2 dest=/etc/init/kube-addons.conf
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 15
 
 - name: Enable and start kube addons
   service: name=kube-addons enabled=yes state=started
