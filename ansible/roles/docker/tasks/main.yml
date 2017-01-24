@@ -42,7 +42,3 @@
   service: name=docker enabled=yes
   notify:
     - start docker
-
-- name: install images
-  include: install.yml
-  tags: install
