@@ -1,3 +1,6 @@
 ---
+- name: Create etcd config directory
+  file: path={{ etcd_conf_dir }} state=directory
+
 - include: etcd-configure.yml
   when: not is_coreos

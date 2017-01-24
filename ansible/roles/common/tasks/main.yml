@@ -9,6 +9,9 @@
     is_coreos: true
   when: "'CoreOS' in distro.stdout"
 
+- name: Create the directory used to store binaries
+  file: path={{ bin_dir }} state=directory
+
 - name: Create Ansible temp directory
   file: path={{ ansible_temp_dir }} state=directory
 
