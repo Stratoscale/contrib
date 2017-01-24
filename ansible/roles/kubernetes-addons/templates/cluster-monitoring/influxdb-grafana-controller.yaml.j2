@@ -21,7 +21,6 @@ spec:
     spec: 
       containers: 
         - image: gcr.io/google_containers/heapster_influxdb:v0.5
-          imagePullPolicy: Never
           name: influxdb
           resources:
             # keep request = limit to keep this container in guaranteed class
@@ -38,7 +37,6 @@ spec:
           - name: influxdb-persistent-storage
             mountPath: /data
         - image: gcr.io/google_containers/heapster_grafana:v2.6.0-2
-          imagePullPolicy: Never
           name: grafana
           env:
           resources:
