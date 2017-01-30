@@ -40,6 +40,14 @@
   tags:
     - masters
 
+# install images on all nodes
+- hosts: all
+  become: yes
+  roles:
+    - epilogue
+  tags:
+    - epilogue
+
 # launch addons, like dns
 - hosts: masters
   become: yes
@@ -57,10 +65,3 @@
   tags:
     - nodes
 
-# install images on all nodes
-- hosts: all
-  become: yes
-  roles:
-    - epilogue
-  tags:
-    - epilogue
