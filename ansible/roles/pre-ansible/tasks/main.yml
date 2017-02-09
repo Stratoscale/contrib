@@ -1,4 +1,9 @@
 ---
+- wait_for:
+   port: 22
+   delay: 40
+   timeout: 300
+
 - name: get hostname facts
   raw: "hostname"
   register: hostname
