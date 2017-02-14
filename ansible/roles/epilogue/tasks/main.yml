@@ -1,8 +1,8 @@
 ---
-- name: Load dash from archive
+- name: Load dashboard from archive
   docker_image:
     name: kubernetes-dashboard-amd64
-    load_path: /home/fedora/install/dash.tar.gz
+    load_path: /home/fedora/install/dashboard.tar.gz
     pull: no
     state: present
 
@@ -13,30 +13,23 @@
     pull: no
     state: present
 
-- name: Load skydns from archive
+- name: Load kubedns-amd64 from archive
   docker_image:
-    name: skydns
-    load_path: /home/fedora/install/skydns.tar.gz
+    name: kubedns
+    load_path: /home/fedora/install/kubedns.tar.gz
     pull: no
     state: present
 
-- name: Load kube2sky from archive
+- name: Load kube-dnsmasq from archive
   docker_image:
-    name: kube2sky
-    load_path: /home/fedora/install/kube2sky.tar.gz
+    name: kube-dnsmasq
+    load_path: /home/fedora/install/kube-dnsmasq.tar.gz
     pull: no
     state: present
 
-- name: Load exechealth from archive
+- name: Load exechealthz from archive
   docker_image:
-    name: exechealth
-    load_path: /home/fedora/install/health.tar.gz
-    pull: no
-    state: present
-
-- name: Load etcd from archive
-  docker_image:
-    name: etcd
-    load_path: /home/fedora/install/etcd.tar.gz
+    name: exechealthz
+    load_path: /home/fedora/install/exechealthz.tar.gz
     pull: no
     state: present
